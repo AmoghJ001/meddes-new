@@ -33,8 +33,8 @@ if radio == "About MedDES":
         'Hence, we recommend seeking an appointment with a medical expert for confirmation.')
     st.subheader('How It Works?')
     from PIL import Image
-    image = Image.open('Systemfunc.png')
-    st.image(image, caption='How MedDES works',width=None)
+    sysimage = Image.open('Systemfunc.png')
+    st.image(sysimage, caption='How MedDES works',width=None)
     st.subheader("*Patient Biodata*")
     st.write('The biodata of the concerned patient is uploaded in our system.  \n'
              'It is temporarily saved in our database and is later used while generating the patient report.')
@@ -63,7 +63,7 @@ elif radio == "Patient Biodata":
     session_state.symptoms = st.text_input("Any symptoms: ", value=session_state.symptoms)
 
 elif radio == "Malaria Test":
-    model = load_model('malmodellatest.hdf5')
+    modelmal = load_model('malmodellatest.hdf5')
     st.write("""
                  # Malaria Diagnostic Test
                  """
@@ -77,19 +77,19 @@ elif radio == "Malaria Test":
         "-Some other symptoms include fast heart rate, headache, diarrhoea, nausea or vomiting   \n"
         "*source:* [who.int](https://www.who.int/news-room/fact-sheets/detail/malaria)")
     st.subheader("Please upload a Microscopic Blood Smear Image of the patient!")
-    file = st.file_uploader("", type=["jpg", "png", "jpeg"])
-    if file is None:
+    filemal = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    if filemal is None:
         st.text("Please upload an image file")
     else:
-        image = Image.open(file)
-        st.image(image, use_column_width=True)
+        imagemal = Image.open(filemal)
+        st.image(imagemal, use_column_width=True)
         size = (64, 64)
-        image = ImageOps.fit(image, size, Image.ANTIALIAS)
-        image = np.asarray(image)
-        img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        img_resize = (cv2.resize(img, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)) / 255.
+        imagemal = ImageOps.fit(imagemal, size, Image.ANTIALIAS)
+        imagemal = np.asarray(imagemal)
+        imgmal = cv2.cvtColor(imagemal, cv2.COLOR_BGR2RGB)
+        img_resize = (cv2.resize(imgmal, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)) / 255.
         img_reshape = img_resize[np.newaxis, ...]
-        prediction = model.predict(img_reshape)
+        prediction = modelmal.predict(img_reshape)
         classes = np.argmax(prediction, axis=1)
         if classes == 0:
             st.subheader('Diagnostic Result:')
@@ -101,7 +101,7 @@ elif radio == "Malaria Test":
             #st.text("Diagnostic probability:" + prob)
             session_state.mal = "Malaria Infected"
 elif radio == "COVID-19 Test":
-    model = load_model('covidmodelnew.hdf5')
+    modelcov = load_model('covidmodelnew.hdf5')
     st.write("""
                  # COVID-19 Diagnostic Test
                  """
@@ -123,19 +123,19 @@ elif radio == "COVID-19 Test":
         "-a rash on skin, or discolouration of fingers or toes  \n"
         "*source:* [who.int](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19#:~:text=symptoms)")
     st.subheader("Please upload an Axial Chest CT Scan  of the patient!")
-    file = st.file_uploader("", type=["jpg", "png", "jpeg"])
-    if file is None:
+    filecov = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    if filecov is None:
         st.text("Please upload an image file")
     else:
-        image = Image.open(file)
-        st.image(image, use_column_width=True)
+        imagecov = Image.open(filecov)
+        st.image(imagecov, use_column_width=True)
         size = (224, 224)
-        image = ImageOps.fit(image, size, Image.ANTIALIAS)
-        image = np.asarray(image)
-        img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        img_resize = (cv2.resize(img, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)) / 255.
+        imagecov = ImageOps.fit(imagecov, size, Image.ANTIALIAS)
+        imagecov = np.asarray(imagecov)
+        imgcov = cv2.cvtColor(imagecov, cv2.COLOR_BGR2RGB)
+        img_resize = (cv2.resize(imgcov, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)) / 255.
         img_reshape = img_resize[np.newaxis, ...]
-        prediction = model.predict(img_reshape)
+        prediction = modelcov.predict(img_reshape)
         classes = np.argmax(prediction, axis=1)
         if classes == 0:
             st.subheader('Diagnostic Result:')
@@ -147,7 +147,7 @@ elif radio == "COVID-19 Test":
             #st.text("Diagnostic probability:" + prob)
             session_state.covid = "COVID Positive"
 elif radio == "Pneumonia Test":
-    model = load_model('pneumodelnew.hdf5')
+    modelpneu = load_model('pneumodelnew.hdf5')
     st.write("""
                  # Pneumonia Diagnostic Test
                  """
@@ -161,19 +161,19 @@ elif radio == "Pneumonia Test":
         "-Some other symptoms include dehydration, fatigue, fast breathing, shallow breathing.  \n"
         "*source:* [healthline](https://www.healthline.com/health/pneumonia#is-it-contagious?)")
     st.subheader("Please upload the Chest X-Ray of the patient!")
-    file = st.file_uploader("", type=["jpg", "png", "jpeg"])
-    if file is None:
+    filepneu = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    if filepneu is None:
         st.text("Please upload an image file")
     else:
-        image = Image.open(file)
-        st.image(image, use_column_width=True)
+        imagepneu = Image.open(filepneu)
+        st.image(imagepneu, use_column_width=True)
         size = (224, 224)
-        image = ImageOps.fit(image, size, Image.ANTIALIAS)
-        image = np.asarray(image)
-        img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        img_resize = (cv2.resize(img, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)) / 255.
+        imagepneu = ImageOps.fit(imagepneu, size, Image.ANTIALIAS)
+        imagepneu = np.asarray(imagepneu)
+        imgpneu = cv2.cvtColor(imagepneu, cv2.COLOR_BGR2RGB)
+        img_resize = (cv2.resize(imgpneu, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)) / 255.
         img_reshape = img_resize[np.newaxis, ...]
-        prediction = model.predict(img_reshape)
+        prediction = modelpneu.predict(img_reshape)
         classes = np.argmax(prediction, axis=1)
         if classes == 0:
             st.subheader('Diagnostic Result:')
@@ -186,7 +186,7 @@ elif radio == "Pneumonia Test":
             session_state.pneu = "Pneumonia"
 
 elif radio == "Brain Tumour Test":
-    model = load_model('/app/btmodel90.hdf5')
+    modelbt = load_model('/app/btmodel90.hdf5')
     st.write("""
                  # Brain Tumour Diagnostic Test
                  """
@@ -199,19 +199,19 @@ elif radio == "Brain Tumour Test":
         "-In some cases, there may be no symptoms.  \n"
         "*source:* [healthline](https://www.healthline.com/health/brain-tumor#symptoms)")
     st.subheader("Please upload a Brain MRI of the patient!")
-    file = st.file_uploader("", type=["jpg", "png", "jpeg"])
-    if file is None:
+    filebt = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    if filebt is None:
         st.text("Please upload an image file")
     else:
-        image = Image.open(file)
-        st.image(image, use_column_width=True)
+        imagebt = Image.open(filebt)
+        st.image(imagebt, use_column_width=True)
         size = (64, 64)
-        image = ImageOps.fit(image, size, Image.ANTIALIAS)
-        image = np.asarray(image)
-        img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        img_resize = (cv2.resize(img, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)) / 255.
+        imagebt = ImageOps.fit(imagebt, size, Image.ANTIALIAS)
+        imagebt = np.asarray(imagebt)
+        imgbt = cv2.cvtColor(imagebt, cv2.COLOR_BGR2RGB)
+        img_resize = (cv2.resize(imgbt, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)) / 255.
         img_reshape = img_resize[np.newaxis, ...]
-        prediction = model.predict(img_reshape)
+        prediction = modelbt.predict(img_reshape)
         classes = np.argmax(prediction, axis=1)
         if classes == 0:
             st.subheader('Diagnostic Result:')
