@@ -16,7 +16,7 @@ st.set_page_config(page_title='MedDES', page_icon = meddes, initial_sidebar_stat
 st.sidebar.title('Navigation')
 radio = st.sidebar.radio(label="", options=["About MedDES","Patient Biodata", "Malaria Test", "COVID-19 Test","Pneumonia Test", "Brain Tumour Test", "Patient Report"])
 
-session_state = SessionState.get(name = "", gender = "", symptoms = "",age = 18,diability="",  mal="Not done",covid="Not done", pneu = "Not done", bt = "Not done")  # Pick some initial values.
+session_state = SessionState.get(name = "", gender = "", symptoms = "",age = 18,disability="",  mal="Not done",covid="Not done", pneu = "Not done", bt = "Not done")  # Pick some initial values.
 cols = ["Patient Name", "Gender", "Age","Physical Disability", "Symptoms","Malaria Test", "COVID-19 Test","Pneumonia Test", "Brain Tumour Test"]
 glist = ['Male', 'Female','Other']
 dlist = ["No",'Yes']
@@ -77,7 +77,7 @@ elif radio == "Malaria Test":
         "-Some other symptoms include fast heart rate, headache, diarrhoea, nausea or vomiting   \n"
         "*source:* [who.int](https://www.who.int/news-room/fact-sheets/detail/malaria)")
     st.subheader("Please upload a Microscopic Blood Smear Image of the patient!")
-    filemal = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    filemal = st.file_uploader("", type=["jpg", "png", "jpeg"],key=1)
     if filemal is None:
         st.text("Please upload an image file")
     else:
@@ -125,7 +125,7 @@ elif radio == "COVID-19 Test":
         "-a rash on skin, or discolouration of fingers or toes  \n"
         "*source:* [who.int](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/question-and-answers-hub/q-a-detail/coronavirus-disease-covid-19#:~:text=symptoms)")
     st.subheader("Please upload an Axial Chest CT Scan  of the patient!")
-    filecov = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    filecov = st.file_uploader("", type=["jpg", "png", "jpeg"],key=2)
     if filecov is None:
         st.text("Please upload an image file")
     else:
@@ -165,7 +165,7 @@ elif radio == "Pneumonia Test":
         "-Some other symptoms include dehydration, fatigue, fast breathing, shallow breathing.  \n"
         "*source:* [healthline](https://www.healthline.com/health/pneumonia#is-it-contagious?)")
     st.subheader("Please upload the Chest X-Ray of the patient!")
-    filepneu = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    filepneu = st.file_uploader("", type=["jpg", "png", "jpeg"],key=3)
     if filepneu is None:
         st.text("Please upload an image file")
     else:
@@ -188,7 +188,7 @@ elif radio == "Pneumonia Test":
             st.subheader('Diagnostic Result:')
             st.write("The following patient has been infected with Pneumonia. We suggest an appointment with a Medical Expert for confirmation.")
             #st.text("Diagnostic probability:" + prob)
-            session_state.pneu = "Pneumonia"
+            session_state.pneu = "Pneumonia diagnosed"
             filepneu.clear()
 
 elif radio == "Brain Tumour Test":
@@ -205,7 +205,7 @@ elif radio == "Brain Tumour Test":
         "-In some cases, there may be no symptoms.  \n"
         "*source:* [healthline](https://www.healthline.com/health/brain-tumor#symptoms)")
     st.subheader("Please upload a Brain MRI of the patient!")
-    filebt = st.file_uploader("", type=["jpg", "png", "jpeg"])
+    filebt = st.file_uploader("", type=["jpg", "png", "jpeg"],key=4)
     if filebt is None:
         st.text("Please upload an image file")
     else:
