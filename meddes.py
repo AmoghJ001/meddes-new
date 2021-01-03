@@ -95,13 +95,12 @@ elif radio == "Malaria Test":
             st.subheader('Diagnostic Result:')
             st.write("The following patient is an Uninfected case")
             session_state.mal = "Normal"
-            filemal.clear()
         else:
             st.subheader('Diagnostic Result:')
             st.write("The following patient is an Infected case. We suggest an appointment with a Medical Expert for confirmation. ")
             #st.text("Diagnostic probability:" + prob)
             session_state.mal = "Malaria Infected"
-            filemal.clear()
+            
 elif radio == "COVID-19 Test":
     modelcov = load_model('covidmodelnew.hdf5')
     st.write("""
@@ -143,13 +142,13 @@ elif radio == "COVID-19 Test":
             st.subheader('Diagnostic Result:')
             st.write("The following patient is Covid Negative i.e Normal case")
             session_state.covid = "COVID Negative"
-            filecov.clear()
+            
         else:
             st.subheader('Diagnostic Result:')
             st.write("The following patient has been infected with COVID-19. We suggest an appointment with a Medical Expert for confirmation.")
             #st.text("Diagnostic probability:" + prob)
             session_state.covid = "COVID Positive"
-            filecov.clear()
+            
 elif radio == "Pneumonia Test":
     modelpneu = load_model('pneumodelnew.hdf5')
     st.write("""
@@ -183,13 +182,13 @@ elif radio == "Pneumonia Test":
             st.subheader('Diagnostic Result:')
             st.write("The following patient is a Normal case")
             session_state.pneu = "Normal"
-            filepneu.clear()
+            
         else:
             st.subheader('Diagnostic Result:')
             st.write("The following patient has been infected with Pneumonia. We suggest an appointment with a Medical Expert for confirmation.")
             #st.text("Diagnostic probability:" + prob)
             session_state.pneu = "Pneumonia diagnosed"
-            filepneu.clear()
+            
 
 elif radio == "Brain Tumour Test":
     modelbt = load_model('/app/btmodel90.hdf5')
@@ -223,13 +222,13 @@ elif radio == "Brain Tumour Test":
             st.subheader('Diagnostic Result:')
             st.write("The following patient is a Normal case")
             session_state.bt = "Normal"
-            filebt.clear()
+            
         else:
             st.subheader('Diagnostic Result:')
             st.write("The following patient has been diagnosed with Brain Tumour. We suggest an appointment with a Medical Expert for confirmation.")
             #st.text("Diagnostic probability:" + prob)
             session_state.bt = "Tumour diagnosed"
-            filebt.clear()
+            
 elif radio == "Patient Report":
     import streamlit as st
     import base64
