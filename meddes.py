@@ -20,7 +20,7 @@ session_state = SessionState.get(name = "", gender = "", symptoms = "",age = 18,
 cols = ["Patient Name", "Gender", "Age","Physical Disability", "Symptoms","Malaria Test", "COVID-19 Test","Pneumonia Test", "Brain Tumour Test"]
 glist = ['Male', 'Female','Other']
 dlist = ["No",'Yes']
-@st.cache(allow_output_mutation=True)
+
 if radio == "About MedDES":
     st.image(meddes, width=None)
     st.write("*Copyright:* :copyright: Amogh Manoj Joshi")
