@@ -53,7 +53,7 @@ if radio == "About MedDES":
              'The detailed report can be downloaded as an excel file for hospital records.  \n')
     st.title('About the Creator')
     st.subheader('Amogh Manoj Joshi')
-    ownimage = Image.open('Amogh.jpeg')
+    ownimage = Image.open('amogh.jpeg')
     st.image(ownimage, caption='The Creator',width=None)
     st.write(
         'Amogh Joshi is a final year ECE undergraduate student at University of Mumbai. \n'
