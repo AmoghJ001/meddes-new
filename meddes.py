@@ -54,7 +54,7 @@ if radio == "About MedDES":
     st.title('About the Creator')
     st.subheader('Amogh Manoj Joshi')
     ownimage = Image.open('amogh.jpeg')
-    st.image(ownimage, caption='The Creator',width=None)
+    st.image(ownimage, caption='The Creator',width=10)
     st.write(
         'Amogh Joshi is a final year ECE undergraduate student at University of Mumbai. \n'
         'His research interests lie in the intersection of Deep Learning, Computer Vision and Medical Image Diagnosis.  \n'
