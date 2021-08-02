@@ -54,13 +54,12 @@ if radio == "About MedDES":
     st.title('About the Creator')
     st.subheader('Amogh Manoj Joshi')
     ownimage = Image.open('amogh.jpeg')
-    st.image(ownimage, caption='The Creator',width=20)
+    st.image(ownimage, caption='The Creator',width=120)
     st.write(
         'Amogh Joshi is a final year ECE undergraduate student at University of Mumbai.  \n'
-        'His research interests lie in the intersection of Deep Learning, Computer Vision and Medical Image Diagnosis.'
-        'He aspires to be a research scientist working on unsolved problems and applying his research to benefit the healthcare domain.  \n'
-        'MedDES was thought of by Amogh in Dec 2020, with an attempt to develop a free to use AI-based medical diagnostic system.' 
-        'MedDES was succesfully developed within just 1 month and was fully functioning by Jan 2021!  \n')
+        'His research interests lie in the intersection of Deep Learning, Computer Vision and Medical Image Diagnosis. He aspires to be a research scientist working on unsolved problems and applying his research to benefit the healthcare domain.  \n'
+        'MedDES was thought of by Amogh in Dec 2020, with an attempt to develop a free to use AI-based medical diagnostic system. MedDES was succesfully developed within just 1 month and was fully functioning by Jan 2021!  \n' 
+        )
 elif radio == "Patient Biodata":
     st.title('Patient Biodata')
     st.write(
