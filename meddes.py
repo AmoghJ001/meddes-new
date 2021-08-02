@@ -51,7 +51,16 @@ if radio == "About MedDES":
              'Our system has an added feature of generating a detailed patient report.  \n'
              'The report contains the patient biodata and the results of the tests performed.  \n'
              'The detailed report can be downloaded as an excel file for hospital records.  \n')
-
+    st.title('About the Creator')
+    st.subheader('Amogh Manoj Joshi')
+    ownimage = Image.open('Amogh.jpeg')
+    st.image(ownimage, caption='The Creator',width=None)
+    st.write(
+        'Amogh Joshi is a final year ECE undergraduate student at University of Mumbai. \n'
+        'His research interests lie in the intersection of Deep Learning, Computer Vision and Medical Image Diagnosis.  \n'
+        'He aspires to be a research scientist working on unsolved problems and applying his research to benefit the healthcare domain. \n'
+        'MedDES was thought of by Amogh in Dec 2020, with an attempt to develop a free to use AI-based medical diagnostic system. MedDES was succesfully developed \n' 
+        'and implemented within just 1 month and was fully functioning by Jan 2021!\n')
 elif radio == "Patient Biodata":
     st.title('Patient Biodata')
     st.write(
